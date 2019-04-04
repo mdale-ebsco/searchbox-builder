@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+
+  <!--FontAwesome icons-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <style>
+    body{font-family: 'Roboto', sans-serif;}
+      h1,h2,h3,h4,h5,h6{font-family: 'Open Sans', sans-serif;color: #002F56;}
+      body form:not(:first-of-type) {display: none;}
+    </style>
+
+  <title>EDS Searchbox builder</title>
+</head>
+
+<body class="mb-5">
+  <div class="container">
+    <div class="row progress">
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+  <div class="container mt-3 mb-3">
+    <div class="row">
+      <h3>EDS Searchbox Builder</h3>
+    </div>
+  </div>
+  <form id="account_form" class="container mt-3 needs-validation" novalidate>
+    <!--Account Information Block-->
+    <fieldset class="container border mt-4 pt-3">
+      <h5 class="font-weight-light text-uppercase">Account Information</h5>
+      <p class="h5 mt-4 mb-3">Enter the <a class="text-decoration-none" target="_blank" href="https://widgets.ebscohost.com/prod/search/builder/img/custid.png">CustID, GroupID, and ProfileID</a> associated with the EDS profile you are making a
+        search
+        box for.</p>
+      <div class="form-row mt-4">
+        <div class="col-sm-4">
+          <label for="custid">Cust ID</label>
+          <input id="custid" name="custid" type="text" aria-describedby="custid-block" required="required" class="form-control here" placeholder="s0123456" value="">
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col-sm-4">
+          <label for="groupid">Group ID</label>
+          <input id="groupid" name="groupid" type="text" aria-describedby="groupid-block" required="required" class="form-control here" placeholder="main" value="">
+        </div>
+      </div>
+      <div class="form-row mt-1">
+        <div class="col-sm-4">
+          <label for="profileid">Profile ID</label>
+          <input id="profileid" name="profileid" type="text" aria-describedby="profileid-block" required="required" class="form-control here" placeholder="eds" value="">
+        </div>
+      </div>
+      <div class="form-row mt-3 mb-3">
+        <button id="next_account" class="next btn btn-primary">Next</button>
+      </div>
+    </fieldset>
+  </form>
+  <!--End Account block-->
+
+  <!--Authentication Configuration-->
+  <form id="auth_form" class="container mt-3 needs-validation" novalidate>
+    <fieldset class="container border mt-4 pt-3">
+      <h5 class="font-weight-light text-uppercase">Authentication</h5>
+      <div class="form-row">
+        <div class="col-md-12">
+          <p class="h5 mt-4 mb-3">Will you be using a proxy to authenticate users into EDS from the search box?</p>
+        </div>
+        <div class="col-md-6">
+          <div class="proxyradio form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="yes" id="proxy1" name="proxy" required>
+              <label class="form-check-label" for="proxy">
+                Yes, I want to authenticate using our proxy.
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="no" id="proxy2" name="proxy" required>
+              <label class="form-check-label" for="proxy">
+                No, I will not be using a proxy to authenticate.
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="proxy-options" class="form-row" style="display:none;">
+        <div class="col-md-12">
+          <p class="h5 mt-4 mb-3">What type of proxy do you have?</p>
+        </div>
+        <div class="col-md-6">
+          <div class="proxytype form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="ezproxy" id="ezproxy" name="proxytype">
+              <label class="form-check-label" for="proxytype">
+                EZProxy
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="wam" id="wam" name="proxytype">
+              <label class="form-check-label" for="proxytype">
+                WAM
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="pxy-other" id="other" name="proxytype">
+              <label class="form-check-label" for="proxytype">
+                Other
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="proxy-ez" class="form-row" style="display:none;">
+        <div class="col-md-12">
+          <p class="h5 mt-4 mb-3">Please enter your EZProxy Prefix</p>
+        </div>
+        <div class="col-md-7">
+          <div class="ezprefix form-group">
+              <label for="ezproxyprefix">Proxy Prefix</label>
+              <input id="ezproxyprefix" name="ezproxyprefix" type="text" aria-describedby="ezproxyprefix-block" required="required" class="form-control" placeholder="http://ezproxy.myinstitute.edu/login?url=" value="">
+          </div>
+        </div>
+      </div>
+      <div id="proxy-wam" class="form-row" style="display:none;">
+        <div class="col-md-12">
+          <p class="h5 mt-4 mb-3">Please enter your WAM server address</p>
+          <p>For example, if you are using a WAM proxy to authenicate into EBSCO resources using this URL: <samp>https://0-search-ebscohost-com.wamproxy.university.edu</samp> then enter <samp>wamproxy.university.edu</samp> into the box below.</p>
+        </div>
+        <div class="col-md-7">
+          <div class="wamprefix form-group">
+              <label for="wamproxyprefix">WAM server address</label>
+              <input id="wamproxyprefix" name="wamproxyprefix" type="text" aria-describedby="wamproxyprefix-block" required="required" class="form-control" placeholder="proxy.myinstitute.edu" value="">
+          </div>
+        </div>
+      </div>
+      <div id="proxy-other" class="form-row" style="display:none;">
+        <div class="col-md-12">
+          <p class="h5 mt-4 mb-3">Ok! Enter your proxy prefix or proxy mask. Use <mark>{targetURL}</mark> as a placeholder. The targetURL is the URL of the resource where you are directing your users using proxied access.</p>
+          <p>If you are unable to enter your proxy here using this format, please contact <a href="mailto:support@ebsco.com?Subject=Search%20Box%20Builder%20Help" target="_top">Support@ebsco.com</a> for help.</p>
+        </div>
+        <div class="col-md-7">
+          <div class="otherprefix form-group">
+              <label for="otherproxyprefix">Proxy Prefix</label>
+              <input id="otherproxyprefix" name="otherproxyprefix" type="text" aria-describedby="otherproxyprefix-block" required="required" class="form-control" placeholder="http://proxy.domain.org:2048/form?qurl={targetURL}" value="">
+          </div>
+        </div>
+      </div>
+      <div class="form-row mt-3 mb-3">
+        <button id="prev_auth" class="previous btn btn-default">Previous</button>
+        <button id="prog_auth" class="btn btn-primary">Next</button>
+        <button id="next_auth" class="next btn btn-primary" style="display:none;">Next</button>
+      </div>
+    </fieldset>
+  </form>
+  <!--END Authentication Block-->
+
+  <!--Limiter Configuration-->
+  <form id="limiter_form" class="container mt-3 needs-validation" novalidate>
+    <fieldset class="container border mt-4 pt-3">
+      <h5 class="font-weight-light text-uppercase">Limiters</h5>
+      <!-- <div class="form-row mt-4">
+          <div class="form-group">
+            <label for="custid">CustID</label>
+            <input id="custid" name="custid" type="text" aria-describedby="custid-block" required="required" class="form-control here" data-toggle="tooltip" data-placement="right" title="Your EBSCO customer ID" value="">
+          </div>
+        </div>
+        <div class="form-row mt-1">
+          <div class="form-group">
+            <label for="groupid">Group ID</label>
+            <input id="groupid" name="custid" type="text" aria-describedby="groupid-block" required="required" class="form-control here" value="main">
+            <small id="groupidHelp" class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div class="form-row mt-1">
+          <div class="form-group">
+            <label for="profileid">Profile ID</label>
+            <div class="input-group">
+              <input id="profileid" name="custid" type="text" aria-describedby="profileid-block" required="required" class="form-control here" value="">
+            </div>
+          </div>
+        </div> -->
+      <div class="form-row mt-3 mb-3">
+        <button class="previous btn btn-default">Previous</button>
+        <button class="next btn btn-primary">Next</button>
+      </div>
+    </fieldset>
+  </form>
+  <!--END Limiter Block-->
+
+  <!--Advanced Features: tabs, autocomplete-->
+  <form id="advanced_form" class="container mt-3 needs-validation" novalidate>
+    <fieldset class="container border mt-4 pt-3">
+      <h5 class="font-weight-light text-uppercase">Advanced Features</h5>
+      <!-- <div class="form-row mt-4">
+          <div class="form-group">
+            <label for="custid">CustID</label>
+            <input id="custid" name="custid" type="text" aria-describedby="custid-block" required="required" class="form-control here" data-toggle="tooltip" data-placement="right" title="Your EBSCO customer ID" value="">
+          </div>
+        </div>
+        <div class="form-row mt-1">
+          <div class="form-group">
+            <label for="groupid">Group ID</label>
+            <input id="groupid" name="custid" type="text" aria-describedby="groupid-block" required="required" class="form-control here" value="main">
+            <small id="groupidHelp" class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div class="form-row mt-1">
+          <div class="form-group">
+            <label for="profileid">Profile ID</label>
+            <div class="input-group">
+              <input id="profileid" name="custid" type="text" aria-describedby="profileid-block" required="required" class="form-control here" value="">
+            </div>
+          </div>
+        </div> -->
+      <div class="form-row mt-3 mb-3">
+        <button class="previous btn btn-default">Previous</button>
+        <button class="submit btn btn-primary">Make my Search Box!</button>
+      </div>
+    </fieldset>
+  </form>
+  <!--END Advanced Features Block-->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script id="eds-searchbox" src="//gss.ebscohost.com/mdale/Builder/searchbox-builder/builder.js"></script>
+</body>
+
+</html>
